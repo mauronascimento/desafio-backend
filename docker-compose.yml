@@ -1,0 +1,31 @@
+version: "3"
+volumes:
+  local_postgres_data: {}
+
+services:
+  local:
+    restart: always
+    build: .
+    command: ["bash", "entrypoint.sh"]
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    environment:
+      - PYTHONIOENCODING=UTF-8
+      - DATABASE_URL=postgres://postgres:test@postgres:5432/tembici-api
+
+  postgres:
+    image: postgres
+    networks:
+      - default
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: tembici
+      POSTGRES_USER: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - local_postgres_data:/var/lib/postgresql
