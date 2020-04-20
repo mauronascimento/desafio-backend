@@ -4,7 +4,7 @@
 docker-compose up --build
 
 ```
-O serviço estará em: http://localhost:8000/
+O serviço estará em: http://0.0.0.0:8000/
 
 ## Autenticação
 
@@ -22,4 +22,4 @@ Após adicione no header:
 
 ## Documentação
 
-http://localhost:8000/swagger/
+http://0.0.0.0:8000/swagger/
